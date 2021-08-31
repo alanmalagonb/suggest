@@ -1,0 +1,478 @@
+<div class="container bg-light rounded">
+  <div class="row">
+        <div class="d-flex">
+        
+        <div class="flex-grow-1 ms-3">
+            
+            <div class="col-12 p-2 border-bottom">
+                    <div class="d-flex bd-highlight ">
+                        
+                        <div class="p-2 bd-highlight">
+                            
+                            <div class="d-flex flex-row bd-highlight mb-3">
+                            <div class="p-2 bd-highlight"> <h3><strong><p class="text-break justified">{{title}}</p></strong></h3></div>
+                            <div class="p-2 bd-highlight"><h4>
+                                {{#if (isPending status_id)}}
+                                <span class="badge text-dark rounded-pill pendiente">En espera</button>
+                                {{/if}}
+                                {{#if (isAccepted status_id)}}
+                                <span class="badge text-dark rounded-pill aceptada">Aceptada</span>
+                                {{/if}}
+                                {{#if (isDenied status_id)}}
+                                <span class="badge text-dark rounded-pill denegada">Rechazada</span>
+                                {{/if}}
+                                
+                            </h4></div>
+                            <div class="p-1 pt-2 bd-highlight">
+                                    {{#if progressBar}}
+                                <div class="d-flex flex-row bd-highlight mb-3">
+                                <div class="p-1 bd-highlight progreso">{{progressBar.plikes}}</div>
+                                <div class="p-2 bd-highlight">
+                                    <div class="progress" style="width: 100px; height: 7px;">
+                                    <div class="progress-bar aceptada" role="progressbar" style="width: {{progressBar.percentagel}}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar denegada" role="progressbar" style="width: {{progressBar.percentagedl}}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>  
+                                </div>
+                                <div class="p-1 bd-highlight progreso">{{progressBar.pdislikes}}</div>
+                                </div>
+                                    {{else}}
+                                <div class="d-flex flex-row bd-highlight mb-3">
+                                <div class="p-1 bd-highlight progreso">0</div>
+                                <div class="p-2 bd-highlight">
+                                    <div class="progress" style="width: 100px;height: 7px;">
+                                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>  
+                                </div>
+                                <div class="p-1 bd-highlight progreso">0</div>
+                                </div>
+                                    {{/if}}
+                                
+
+                            </div>
+                            </div>
+                                    
+                        </div>
+                        
+                        <div class="ms-auto p-2 bd-highlight">
+                            <img class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="35" height="35" src="{{#if (isUrl url)}}{{else}}/{{/if}}{{url}}">
+                        </div>
+                    </div>
+                    <div class="d-flex p-2 ps-3 pb-2 bd-highlight text-muted"><p class="text-break justified">{{body}}</p>
+                </div>
+                {{#if (isPending status_id)}}
+
+         <div class="d-flex flex-row-reverse bd-highlight pe-2">
+                            <div class="bd-highlight border-primary">
+                                    <div class="d-flex flex-row bd-highlight align-items-center">
+                                        <div class="bd-highlight p-2">
+                                             <span id="dislikes-count-suggest" class="fs-6 dislikes-count-suggest text-secondary 
+                                            
+                                            ">{{progressBar.pdislikes}}</span>
+                                        </div>
+                                        <div class="bd-highlight">
+                                            <i id="suggestdislike{{idl}}" class="suggest fs-4 bi bi-hand-thumbs-down dislike 
+                                            {{#if (isEmpty voteType)}} text-secondary 
+                                            {{else}}
+                                                {{#if (isPositive voteType)}} text-secondary 
+                                                {{else}} text-danger
+                                                {{/if}}
+                                            {{/if}}
+                                            " data-id="{{idl}}"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                
+                            </div>
+                            <div class="bd-highlight border-primary">
+                                <div class="d-flex flex-row bd-highlight align-items-center">
+                                        <div class="bd-highlight p-2">
+                                             <span id="likes-count-suggest" class="fs-6 likes-count-suggest text-secondary 
+                                            
+                                            ">{{progressBar.plikes}}</span>
+
+                                        </div>
+                                        <div class="bd-highlight">
+                                            <i id="suggestlike{{idl}}" class="suggest fs-4 bi bi-hand-thumbs-up like  
+                                            {{#if (isEmpty voteType)}} text-secondary 
+                                            {{else}}
+                                                {{#if (isPositive voteType)}} text-success 
+                                                {{else}} text-secondary
+                                                {{/if}}
+                                            {{/if}}
+                                            " data-id="{{idl}}"></i>
+                                        </div>
+                                </div>
+                            </div>
+                            
+                        </div>    
+
+        {{/if}}
+                </div>
+
+        </div>
+    
+
+        </div>
+        
+        </div>
+
+        
+
+<style>
+    
+</style>
+
+<!-- START COMMENT SECTION -->
+
+<div class="container-fluid">
+    <div class="col-12">
+<div class="d-flex flex-column bd-highlight">
+    <div class="p-2 ps-4 bd-highlight">
+            
+    </div>
+    <div class="d-flex">
+            
+            <div class="flex-grow-1 ms-3 pt-2">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 pt-1">
+                            <img alt="" src="{{#if user.avatar}}{{#if (isUrl user.avatar)}}{{else}}/{{/if}}{{user.avatar}}{{/if}}"  class="avatar avatar-45 photo rounded" height="45" width="45" loading="lazy">
+                        </div>
+                        <div class="flex-grow-1 ms-3 pb-2">
+                            <div class="text-wrap fw-bold">{{nick}}
+                                        
+                            </div>
+                            <div class="text-wrap pt-1">
+                                <form action="/links/comment/{{idl}}" method="POST">
+                <div class="form-floating" style="color:black;">
+                    <textarea name="comment" class="form-control autoresizing" placeholder="Agrega un comentarío público..." id="floatingTextarea2" type="text" width="100%" height="40px">{{text}}</textarea>
+                    <label for="floatingTextarea2">Agrega un comentarío público...</label>
+                </div>
+                <div class="pt-2 d-flex flex-row-reverse bd-highlight pb-2">
+                    <button class="btn btn-comment">
+                                        Comentar
+                    </button>
+                </div>
+            </form>
+                            </div>
+                        </div>
+                        
+                    </div>
+            </div>
+            
+        </div>
+</div>
+
+        </div>
+        
+</div>
+    <section class="bg-light ps-3 pb-4">
+
+        <!-- START COMMENT -->
+
+        {{#each comments}}
+        
+        <div class="d-flex">
+            
+            <div class="flex-grow-1 ms-3 pt-2">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 pt-2">
+                            <img alt="" src="{{#if (isUrl filename)}}{{else}}/{{/if}}{{filename}}"  class="avatar avatar-45 photo rounded" height="45" width="45" loading="lazy">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="text-wrap ">
+                                <div class="d-flex flex-row bd-highlight pt-1">
+                                <div class="bd-highlight fw-bold">{{nick}}</div>
+                                <div class="bd-highlight ms-2 text-muted">{{timeago created_at}}</div>
+                                <div class="bd-highlight">{{#if owned}} 
+                                        <div class="text-muted"></div>
+                                        <i class="bi bi-three-dots ms-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        </i>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li><a class="dropdown-item" onclick="confirmDelete(event)"  href="/links/delete/comment/{{id}}">Eliminar</a></li>
+                                            <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalC{{id}}">Editar</a></li>
+                                        </ul>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModalC{{id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Editar respuesta</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body" >
+                                                <form action="/links/edit/comment/{{id}}" method="POST" style="width: 100%;color:black;">
+                                                                <div class="input-group">
+                                                                <textarea name="text" class="form-control form-control-sm" type="text" width="100%" height="60px">{{text}}</textarea>
+                                                                
+                                                            </div>
+
+                                                        
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                                </form>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                {{/if}}</div>
+                                </div>
+                                        
+                                
+                            </div>
+                            <div class="text-break pt-1">
+                            {{text}}
+                            </div>
+                            <div class="pt-2">
+                                <a class="text-muted" rel="nofollow" data-bs-toggle="collapse" href="#collapseExample{{id}}" role="button" aria-expanded="false" aria-controls="collapseExample">Responder</a>
+                            </div>
+                            <div class="collapse bg-light w-100" id="collapseExample{{id}}">
+                                
+                                    <div class="bg-light pt-2" style="color:black;">
+                                            <form action="/links/reply/{{id}}" method="POST" >
+                                                <div class="input-group mb-3" style="color:black;">
+                                                    <textarea name="reply" class="form-control autoresizing" id="floatingTextarea2" style="height: 30px; color:black;"></textarea>
+                                                    <button class="btn btn-outline-primary">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-all" viewBox="0 0 16 16">
+                                                        <path d="M8.098 5.013a.144.144 0 0 1 .202.134V6.3a.5.5 0 0 0 .5.5c.667 0 2.013.005 3.3.822.984.624 1.99 1.76 2.595 3.876-1.02-.983-2.185-1.516-3.205-1.799a8.74 8.74 0 0 0-1.921-.306 7.404 7.404 0 0 0-.798.008h-.013l-.005.001h-.001L8.8 9.9l-.05-.498a.5.5 0 0 0-.45.498v1.153c0 .108-.11.176-.202.134L4.114 8.254a.502.502 0 0 0-.042-.028.147.147 0 0 1 0-.252.497.497 0 0 0 .042-.028l3.984-2.933zM9.3 10.386c.068 0 .143.003.223.006.434.02 1.034.086 1.7.271 1.326.368 2.896 1.202 3.94 3.08a.5.5 0 0 0 .933-.305c-.464-3.71-1.886-5.662-3.46-6.66-1.245-.79-2.527-.942-3.336-.971v-.66a1.144 1.144 0 0 0-1.767-.96l-3.994 2.94a1.147 1.147 0 0 0 0 1.946l3.994 2.94a1.144 1.144 0 0 0 1.767-.96v-.667z"/>
+                                                        <path d="M5.232 4.293a.5.5 0 0 0-.7-.106L.54 7.127a1.147 1.147 0 0 0 0 1.946l3.994 2.94a.5.5 0 1 0 .593-.805L1.114 8.254a.503.503 0 0 0-.042-.028.147.147 0 0 1 0-.252.5.5 0 0 0 .042-.028l4.012-2.954a.5.5 0 0 0 .106-.699z"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                      
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+            </div>
+            
+        </div>
+        <!--
+        <div class="d-flex flex-row-reverse bd-highlight">
+                            <div class="p-2 bd-highlight">
+                                    <i id="commentdislike{{id}}" class="comment fs-4 bi bi-hand-thumbs-down dislike 
+                                    {{#if (isEmpty voteType)}} text-secondary 
+                                    {{else}}
+                                        {{#if (isPositive voteType)}} text-secondary 
+                                        {{else}} text-danger
+                                        {{/if}}
+                                    {{/if}}
+                                    " data-id="{{id}}"></i>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <i id="commentlike{{id}}" class="comment fs-4 bi bi-hand-thumbs-up like  
+                                    {{#if (isEmpty voteType)}} text-secondary 
+                                    {{else}}
+                                        {{#if (isPositive voteType)}} text-success 
+                                        {{else}} text-secondary
+                                        {{/if}}
+                                    {{/if}}
+                                    " data-id="{{id}}"></i>
+                            </div>
+                            <span id="likes-count-comment-{{id}}" class="fs-5 likes-count-suggest text-secondary 
+                                    {{#if (isEmpty votos)}} text-secondary 
+                                    {{else}}
+                                        {{#if (isPositive votos)}} text-success 
+                                        {{else}} text-danger
+                                        {{/if}}
+                                    {{/if}}
+                                    ">{{votos}}</span>
+                        </div>-->
+        <!-- END COMMENT -->
+        <div class="pt-2 ps-5">
+            {{#if reply}}
+            <p class="ps-4">
+            <a class="ps-2 btn-link show-replys" data-bs-toggle="collapse" href="#collapseReply{{id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill pe-1" viewBox="0 0 16 16">
+            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+                
+                Ver respuestas 
+            
+            </a>
+            </p>
+            {{/if}}
+            <div class="collapse" id="collapseReply{{id}}">
+        <!-- START REPLY -->
+        {{#if reply}}
+        {{#each reply}}
+        
+        <div class="d-flex ps-3">
+            <div class="flex-grow-1 ps-3 ms-3 pb-2">
+                    <div class="d-flex  pt-2">
+                        <div class="flex-shrink-0 pt-2">
+                            <img alt="" src="{{#if (isUrl filename)}}{{else}}/{{/if}}{{filename}}"  class="avatar avatar-45 photo rounded" height="45" width="45" loading="lazy">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="text-wrap fw-bold">
+                                <div class="d-flex flex-row bd-highlight">
+                                <div class="bd-highlight">{{nick}} </div>
+                                {{#if reply_nick}}<div class="bd_highlight ps-2 pe-2"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                </svg></div>
+                                <div class="bd-highlight text-muted"> {{reply_nick}}</div> 
+                                {{/if}}
+                                  
+                                {{#if owned}}
+                                        <div class="bd-highlight">
+                                        <i class="bi bi-three-dots ms-3 p-1" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        </i>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li><a class="dropdown-item" onclick="confirmDelete(event)"  href="/links/delete/reply/{{id}}">Eliminar</a></li>
+                                            <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalR{{id}}">Editar</a></li>
+                                        </ul>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModalR{{id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Editar respuesta</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="/links/edit/reply/{{id}}" method="POST" style="width: 100%">
+                                                                <div class="input-group" style="color:black;">
+                                                                <textarea name="text" class="form-control form-control-sm" type="text" width="100%" height="60px">{{text}}</textarea>
+                                                                
+                                                            </div>
+
+                                                        
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                                </form>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                {{/if}}
+                                
+                                </div>
+                            </div>
+                            <div class="text-break">
+                            {{text}}
+                            </div>
+                            <div class="pt-2">
+                                <a class="text-muted" rel="nofollow" data-bs-toggle="collapse" href="#collapseExampleReply{{id}}" role="button" aria-expanded="false" aria-controls="collapseExample">Responder</a>
+                            </div>
+                            <div class="collapse bg-light w-100" id="collapseExampleReply{{id}}">
+                                
+                                    <div class="bg-light pt-2">
+                                            <form action="/links/reply/{{comment_id}}/{{id}}" method="POST">
+                                                <div class="input-group mb-3" style="color:black;">
+                                                    <textarea placeholder="Responder a {{nick}}" name="reply" class="form-control autoresizing" placeholder="Responder a {{nick}}" id="floatingTextarea2" style="height: 30px;"></textarea>
+                                                    <button class="btn btn-outline-primary">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-all" viewBox="0 0 16 16">
+                                                        <path d="M8.098 5.013a.144.144 0 0 1 .202.134V6.3a.5.5 0 0 0 .5.5c.667 0 2.013.005 3.3.822.984.624 1.99 1.76 2.595 3.876-1.02-.983-2.185-1.516-3.205-1.799a8.74 8.74 0 0 0-1.921-.306 7.404 7.404 0 0 0-.798.008h-.013l-.005.001h-.001L8.8 9.9l-.05-.498a.5.5 0 0 0-.45.498v1.153c0 .108-.11.176-.202.134L4.114 8.254a.502.502 0 0 0-.042-.028.147.147 0 0 1 0-.252.497.497 0 0 0 .042-.028l3.984-2.933zM9.3 10.386c.068 0 .143.003.223.006.434.02 1.034.086 1.7.271 1.326.368 2.896 1.202 3.94 3.08a.5.5 0 0 0 .933-.305c-.464-3.71-1.886-5.662-3.46-6.66-1.245-.79-2.527-.942-3.336-.971v-.66a1.144 1.144 0 0 0-1.767-.96l-3.994 2.94a1.147 1.147 0 0 0 0 1.946l3.994 2.94a1.144 1.144 0 0 0 1.767-.96v-.667z"/>
+                                                        <path d="M5.232 4.293a.5.5 0 0 0-.7-.106L.54 7.127a1.147 1.147 0 0 0 0 1.946l3.994 2.94a.5.5 0 1 0 .593-.805L1.114 8.254a.503.503 0 0 0-.042-.028.147.147 0 0 1 0-.252.5.5 0 0 0 .042-.028l4.012-2.954a.5.5 0 0 0 .106-.699z"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+        </div>
+        <!--
+         <div class="d-flex flex-row-reverse bd-highlight">
+                                
+                                <div class="p-2  bd-highlight">
+                                    <i id="replydislike{{id}}" class="reply fs-4 bi bi-hand-thumbs-down dislike 
+                                    {{#if (isEmpty voteType)}} text-secondary 
+                                    {{else}}
+                                        {{#if (isPositive voteType)}} text-secondary 
+                                        {{else}} text-danger
+                                        {{/if}}
+                                    {{/if}}
+                                    " data-id="{{id}}"></i>
+                                </div>
+                                <div class="p-2 bd-highlight">
+                                    <i id="replylike{{id}}" class="reply fs-4 bi bi-hand-thumbs-up like  
+                                    {{#if (isEmpty voteType)}} text-secondary 
+                                    {{else}}
+                                        {{#if (isPositive voteType)}} text-success 
+                                        {{else}} text-secondary
+                                        {{/if}}
+                                    {{/if}}
+                                    " data-id="{{id}}"></i>
+                                </div>
+                                <div class="p-2 bd-highlight">
+                                    <span id="likes-count-reply-{{id}}" class="fs-5 likes-count-suggest text-secondary 
+                                    {{#if (isEmpty votos)}} text-secondary 
+                                    {{else}}
+                                        {{#if (isPositive votos)}} text-success 
+                                        {{else}} text-danger
+                                        {{/if}}
+                                    {{/if}}
+                                    ">{{votos}}</span>
+                                </div>
+                            </div>
+                            -->
+        {{/each}}
+        {{/if}}
+                
+            </div>
+
+        </div>
+        <!-- END REPLY -->
+
+        {{/each}}
+    </section>
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function confirmDelete(ev) {
+        ev.preventDefault();
+        var urlToRedirect = ev.currentTarget.getAttribute('href'); 
+        swal({
+            title: "¿Estas seguro?",
+            text: "Una vez eliminado, no podrás recuperarlo!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            window.location.href=urlToRedirect;
+        } 
+        });
+    }
+
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="/js/scripts.js"></script>
+
+<script type="text/javascript">
+        $('.autoresizing').on('input', function () {
+            this.style.height = 'auto';
+              
+            this.style.height = 
+                    (this.scrollHeight) + 'px';
+        });
+</script>

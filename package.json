@@ -1,0 +1,53 @@
+{
+    "name": "arrow",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/index.js",
+    "scripts": {
+        "dev": "nodemon src/index.js --exec babel-node",
+        "start": "node dist/index.js",
+        "compile": "babel src -d dist",
+        "clean": "rimraf dist",
+        "copyfiles": "ncp ./src/views ./dist/views && ncp ./src/public ./dist/public",
+        "build": "npm run clean && npm run compile && npm run copyfiles"
+    },
+    "keywords": [],
+    "author": "AlanAMB",
+    "license": "ISC",
+    "dependencies": {
+        "@handlebars/allow-prototype-access": "^1.0.5",
+        "@joeattardi/emoji-button": "^4.6.0",
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.19.0",
+        "connect-flash": "^0.1.1",
+        "dotenv": "^10.0.0",
+        "emoji-regex": "^8.0.0",
+        "errorhandler": "^1.5.1",
+        "express": "^4.17.1",
+        "express-handlebars": "^5.3.3",
+        "express-mysql-session": "^2.1.6",
+        "express-session": "^1.17.2",
+        "express-validator": "^6.12.1",
+        "fs-extra": "^8.1.0",
+        "handlebars": "^4.7.7",
+        "install": "^0.13.0",
+        "minecraft-lookup": "^1.1.36",
+        "moment": "^2.29.1",
+        "morgan": "^1.10.0",
+        "multer": "^1.4.2",
+        "mysql": "^2.18.1",
+        "passport": "^0.4.1",
+        "passport-local": "^1.0.0",
+        "timeago.js": "^4.0.2"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.14.8",
+        "@babel/core": "^7.15.0",
+        "@babel/node": "^7.14.9",
+        "@babel/plugin-transform-runtime": "^7.15.0",
+        "@babel/preset-env": "^7.15.0",
+        "ncp": "^2.0.0",
+        "nodemon": "^2.0.12",
+        "rimraf": "^3.0.2"
+    }
+}

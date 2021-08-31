@@ -1,0 +1,157 @@
+<!-- SUGGEST HEAD START -->
+	<style>
+		.clr {
+    clear: both;
+}
+	</style>
+  <div class="d-flex justify-content-between p-3 my-3 text-black bg-light rounded shadow-sm">
+	<div class="p-2 bd-highlight">
+		<h1 class="h1 mb-0 lh-1 mb-2">Sugerencias</h1>
+				<small>¿Tienes una sugerencia? Escribela aquí!</small>
+	</div>
+	<div class="p-2 bd-highlight pt-4">
+		<a href="/links/add" class="btn azulclaro text-black">Nueva Sugerencia</a>
+	</div>
+  </div>
+  
+	<!-- SUGGEST HEAD END -->
+	
+	
+	<!-- SUGGESTIONS START -->
+
+<div class="container bg-light rounded">
+  <div class="row pb-3">
+        {{#if links}}
+        {{#each links}}
+        <div class="col-12">
+            <div class="border-bottom d-flex text-muted pt-3">
+	
+	  <div class="flex-shrink-0 dropup">
+		<img class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="35" height="35" src="{{#if image}}{{#if (isUrl image)}}{{else}}/{{/if}}{{image}}{{else}}/img/steve.png{{/if}}" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+	  	<ul class="dropdown-menu">
+			
+    <div class="card p-2 dropupborder">
+        <div class="d-flex">
+            <div class="image"> <img class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="35" height="35" src="{{#if image}}{{#if (isUrl image)}}{{else}}/{{/if}}{{image}}{{else}}/img/steve.png{{/if}}" data-bs-toggle="dropdown" aria-expanded="false">
+                   
+            </div>
+            <div style="width: 175px;">
+                <div class="d-flex flex-column">
+                  <h4 class="dropup"><strong>{{nick}}</strong></h4> 
+                </div>
+                <div class="dropup d-flex flex-row align-items-center">
+                  <h6 class="dropup">Última actividad: &nbsp;{{timeago last_con}} <h6 class="text-muted"> </h6></h6>
+                </div>
+            </div>
+        </div>
+    </div>	
+
+
+
+
+		</ul>
+	  </div>
+      <div class="pb-1 mb-0 small lh-sm w-100">
+		<div class="d-flex justify-content-between">
+			<div class="flex-grow-1">
+				<div class="pb-1">
+						<a href="/admin/detail/{{id}}"><strong class="text-break">{{title}}</strong></a>
+						</div>
+						<div class="">
+							<p class="text-break">{{nick}} | {{timeago created_at}}</p>
+						</div>
+							
+						
+					</div>
+						<div class="d-flex flex-row-reverse bd-highlight">
+							
+							<div class="p-2 ps-3">
+								<h4>
+								{{#if (isPending status_id)}}
+								<span class="badge text-dark pendiente">En espera</button>
+								{{/if}}
+								{{#if (isAccepted status_id)}}
+								<span class="badge text-dark aceptada">Aceptada</span>
+								{{/if}}
+								{{#if (isDenied status_id)}}
+								<span class="badge text-dark denegada">Rechazada</span>
+								{{/if}}
+								</h4>
+							</div>
+							<div class="p-2 fw-bold progreso">
+								    {{#if progressBar}}
+                                <div class="d-flex flex-row bd-highlight mb-3">
+                                <div class="p-1 bd-highlight">{{progressBar.plikes}}</div>
+                                <div class="p-2 bd-highlight">
+                                    <div class="progress" style="width: 100px; height: 7px;">
+                                    <div class="progress-bar aceptada" role="progressbar" style="width: {{progressBar.percentagel}}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar denegada" role="progressbar" style="width: {{progressBar.percentagedl}}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>  
+                                </div>
+                                <div class="p-1 bd-highlight">{{progressBar.pdislikes}}</div>
+                                </div>
+                                    {{else}}
+                                <div class="d-flex flex-row bd-highlight mb-3">
+                                <div class="p-1 bd-highlight">0</div>
+                                <div class="p-2 bd-highlight">
+                                    <div class="progress" style="width: 100px; height: 7px;">
+                                    <div class="progress-bar pendiente" role="progressbar" style="width: 100%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar pendiente" role="progressbar" style="width: 0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>  
+                                </div>
+                                <div class="p-1 bd-highlight">0</div>
+                                </div>
+                                    {{/if}}
+							</div>
+							
+			
+			
+			</div>
+		</div>
+      </div>
+        </div>
+
+        </div>
+    {{/each}}
+    {{else}}
+	<div class="d-flex justify-content-center p-3 pt-4"><p class="text-break">No hay sugerencias</p></div>
+	{{/if}}
+	
+
+    </div>
+
+	
+</div>
+
+<div class="d-flex flex-row-reverse bd-highlight">
+  <div class="pt-2 bd-highlight">
+	  <nav aria-label="...">
+  <ul class="pagination pagination-sm bg-light">
+	  			{{#if pagination.first}}
+				<li class="page-item bg-light" aria-current="page"><a class="page-link bg-light" href="/links/pag/1">1</a></li>
+				{{/if}}
+
+				{{#if pagination.last}}{{else}}
+				<li class="page-item bg-light"><a class="page-link bg-light" href="#">...</a></li>
+				{{/if}}
+				
+				{{#if pagination.previous}}
+				<li class="page-item bg-light"><a class="page-link bg-light" href="/links/pag/{{pagination.previous}}">{{pagination.previous}}</a></li>
+				{{/if}}
+
+			  	{{#if pagination.current}}
+					<li class="page-item active" aria-current="page"><a class="page-link" href="/links/pag/{{pagination.current}}">{{pagination.current}}</a></li>
+				{{/if}}
+
+				{{#if pagination.next}}
+				<li class="page-item bg-light"><a class="page-link bg-light" href="/links/pag/{{pagination.next}}">{{pagination.next}}</a></li>
+				{{/if}}
+
+				{{#if pagination.last}}
+				<li class="page-item bg-light"><a class="page-link bg-light" href="#">...</a></li>
+				<li class="page-item bg-light"><a class="page-link bg-light" href="/links/pag/{{numPages}}">{{numPages}}</a></li>
+				{{/if}}
+  </ul>
+</nav>
+  </div>
+</div>

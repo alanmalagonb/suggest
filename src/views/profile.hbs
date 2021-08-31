@@ -1,0 +1,120 @@
+<link rel="stylesheet" href="/css/profile.css">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></link>
+<style>
+  .card {
+    width: 600px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff
+}
+
+.stats {
+    background: #f2f5f8 !important;
+    color: #000 !important
+}
+
+.articles {
+    font-size: 10px;
+    color: #a1aab9
+}
+
+.number1 {
+    font-weight: 500
+}
+
+.followers {
+    font-size: 500;
+    font-weight: bold;
+}
+
+.number2 {
+    font-weight: 500
+}
+
+.rating {
+    font-size: 10px;
+    color: #a1aab9
+}
+
+.number3 {
+    font-weight: 500
+}
+
+.clr {
+    clear: both;
+}
+
+.divf{
+  width: 100px;
+  height: 10px;
+}
+</style>
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card bg-light p-3">
+        <div class="d-flex bg-light border-bottom">
+            <div class="image p-3"> <img src="{{#if (isUrl helmavatar)}}{{else}}/{{/if}}{{helmavatar}}" class="rounded" width="150px" height="150px"> 
+                   <div class="d-flex flex-column align-items-center">
+                     <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Cambiar foto
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cambiar Foto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body ps-5">
+         <form action="/profile" class="ps-4" method="POST" enctype="multipart/form-data">
+                        <div class="input-group align-items-center">
+                        <div class="mb-3 align-items-center" width="150px">
+                          <div class="d-flex justify-content-center pt-2 pb-4">
+                          <img src="{{#if (isUrl helmavatar)}}{{else}}/{{/if}}{{helmavatar}}" id="output" class="rounded" width="150px" height="150px"/>
+                          </div>
+                          <input name="image" class="form-control form-control-sm" id="formFileSm" type="file" onchange="loadFile(event)">
+                          
+                        </div>
+                      </div>
+
+                  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+                   </div>
+            </div>
+            <div class="ms-3 ml-3 w-100 pt-3">
+                <div class="d-flex flex-column">
+                  <h4 class="mb-0 mt-0"><strong>{{user.realname}}</strong></h4> 
+                </div>
+                <h2 class="pt-2">{{{role}}}</h2>
+                <div class="button mt-2 d-flex flex-row align-items-center pt-2">
+                  <h6>Última actividad: &nbsp; <h6 class="text-muted"> {{timeago fecha}}</h6></h6>
+                </div>
+            </div>
+        </div>
+        <div class="bg-light p-2 mt-2 bg-primary d-flex justify-content-around rounded text-white stats">
+                    <div class="d-flex flex-column align-items-center"> <span class="followers align-middle">Sugerencias</span> <span class="number1 text-muted align-middle">{{stadistics.suggests}}</span> </div>
+                </div>
+    </div>
+</div>
+
+<script>
+    var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src)
+    }
+  };
+</script>

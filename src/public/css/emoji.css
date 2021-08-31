@@ -1,0 +1,6 @@
+.emoji-button {
+    cursor: pointer;
+    font-family: 'Segoe UI Emoji', 'Segoe UI Symbol', 'Segoe UI', 'Apple Color Emoji', 'Twemoji Mozilla', 'Noto Color Emoji', 'EmojiOne Color', 'Android Emoji';
+}
+
+.emoji-button img {}

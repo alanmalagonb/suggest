@@ -1,0 +1,40 @@
+{{#if success}}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
+        <script>
+                Swal.fire({
+                icon: 'success',
+                text: '{{success}}',
+                showConfirmButton: true,
+                timer: 2500
+                })
+            
+        </script>
+{{/if}}
+
+{{#if message}}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{message}}',
+                timer: 2500
+                })
+            
+        </script>
+{{/if}}
+
+{{#if error}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+   <script>
+       Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  html: '{{{error}}}',
+  timer: 2500
+})
+   </script>
+{{/if}}
