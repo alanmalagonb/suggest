@@ -1,0 +1,55 @@
+<style>
+    .no-border{
+        border: none;
+    }
+
+    textarea{
+        height: 200px;
+    }
+</style>
+
+<div class="d-flex justify-content-between p-3 my-3 text-black bg-light rounded shadow-sm">
+	<div class="p-2 bd-highlight">
+		<h3 class="h3 mb-0 lh-1 text-muted">Publicar tema</h3>
+	</div>
+  </div>
+
+<div class="container bg-light">
+    <div class="row">
+        <div class="mx-auto">
+            <div class="card no-border bg-light">
+                <div class="card-body">
+                    <form action="/links/add" method="POST" class="mb-3"> 
+                        <div class="form-group mb-3">
+                            <input type=text name="title" class="form-control" placeholder="Titulo" autofocus>
+                        </div>
+                        <div class="form-group mb-3">
+                            <textarea name="description" rows="2" class="form-control text" placeholder="Sugerencia"></textarea>
+                        </div>
+                        <div class="form group">
+                            <div class="d-flex flex-row-reverse bd-highlight">
+                            <div class="p-2 bd-highlight">
+                                    <button class="btn btn-light border-secondary">
+                                Publicar
+                            </button>
+                            </div>
+                            <div class="p-2 pt-3 bd-highlight">
+                                {{#if hasPermission}}
+                                <i class="bi bi-emoji-smile emoji-button"></i>
+                            {{/if}}
+                            </div>
+                            
+                            </div>
+                            
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{#if hasPermission}}
+<script src="https://cdn.jsdelivr.net/npm/emoji-button@latest/dist/index.min.js"> </script>
+<script type="text/javascript" src="/js/emoji.js"></script>
+{{/if}}

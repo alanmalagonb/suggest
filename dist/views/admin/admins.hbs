@@ -1,0 +1,29 @@
+<div class="container bg-light">
+    <div class="row">
+        <div class="mx-auto">
+<div class="d-flex flex-column bd-highlight mb-3">
+ <div class="mt-2 p-2 d-flex flex-row bd-dark bg-primary align-items-center justify-content-around rounded">
+    <form class="row g-3" action="/admin/add/admin" method="POST">
+        <div class="col-auto">
+            <input type="text" name="realname" class="form-control border-secondary" placeholder="Nick">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn aceptada mb-3">Agregar</button>
+        </div>
+    </form>
+ </div>
+    {{#each admins}}
+  <div class="p-2 bd-highlight">
+        <div class="d-flex flex-row bd-dark bg-info align-items-center justify-content-around rounded">
+            <div class="p-2 bd-highlight">{{realname}}</div>
+            <div class="p-2 bd-highlight">
+                <a href="/admin/deletea/{{id}}" class="btn denegada btn-lg active" role="button" aria-pressed="true">Eliminar</a>
+            </div>
+        </div>
+  </div>
+    {{/each}}
+</div>
+</div>
+</div>
+</div>
+

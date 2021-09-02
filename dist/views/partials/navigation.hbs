@@ -1,0 +1,34 @@
+
+
+  <div class="d-flex justify-content-center align-items-center p-1 mt-0 mb-5 text-black bg-light rounded-pill shadow-sm">
+    
+    <div class="p-2 bd-highlight">
+      
+      
+      <ul class="navbar-nav ms-auto">
+        {{#if user}}
+            <div class="dropdown">
+              <i class="bi bi-person-circle dropdown-toggle" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+             
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="/links/pag/1">Sugerencias</a></li>
+                <li><a class="dropdown-item" href="/profile">Perfil</a></li>
+                <li><a class="dropdown-item" href="/logout">Cerrar Sesión</a></li>
+              </ul>
+            </div>
+        
+        {{else}}
+        <div class="dropdown">
+ 
+                    <img class="dropdown-toggle" width="50rem" height="50rem" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" src="img/steve.png" class="img-responsive">
+             
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="/signin">Iniciar Sesión</a></li>
+              </ul>
+            </div>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+
+
